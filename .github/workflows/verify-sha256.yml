@@ -1,0 +1,55 @@
+name: Verify static asset hashes
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Verify SHA256SUMS.json
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import sys
+          from pathlib import Path
+
+          root = Path.cwd().resolve()
+          manifest_path = root / "SHA256SUMS.json"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+          if not isinstance(manifest, dict) or not manifest:
+              raise SystemExit("SHA256SUMS.json must be a non-empty object")
+
+          errors = []
+          for relative_path, expected in sorted(manifest.items()):
+              if not isinstance(relative_path, str) or not isinstance(expected, str):
+                  errors.append(f"Invalid entry: {relative_path!r}")
+                  continue
+              target = (root / relative_path).resolve()
+              if root not in target.parents:
+                  errors.append(f"Path escapes repository: {relative_path}")
+                  continue
+              if not target.is_file():
+                  errors.append(f"Missing file: {relative_path}")
+                  continue
+              actual = hashlib.sha256(target.read_bytes()).hexdigest()
+              if actual.lower() != expected.lower():
+                  errors.append(f"SHA-256 mismatch: {relative_path}")
+              else:
+                  print(f"OK {relative_path}")
+
+          if errors:
+              print("\n".join(errors), file=sys.stderr)
+              raise SystemExit(1)
+
+          print(f"Verified {len(manifest)} files.")
+          PY
