@@ -2,36 +2,36 @@ const views = [...document.querySelectorAll('.view')];
 const navItems = [...document.querySelectorAll('.nav-item')];
 
 const demoCases = {
-  ceramics: {
-    title: '新材料中试申请',
-    scenario: '研发试验',
-    objective: '确认中试方案是否具备进入内部复核的证据。',
+  pilot: {
+    title: '新项目试点立项',
+    scenario: '项目 / 试点评审',
+    objective: '确认试点目标、范围和风险控制是否具备进入内部复核的证据。',
     evidence: ['test', 'review'],
-    resultTitle: '补齐试验记录的来源与复核签字',
-    reason: '虚构场景：已有试验摘要和复核意见，但摘要中的关键测量值还不能追溯到原始记录。',
-    nextSteps: ['关联带批次号的原始测量记录', '注明试验设备与校准状态', '由授权复核人确认关键数据']
+    resultTitle: '补齐关键材料的来源与复核签字',
+    reason: '虚构场景：已有方案摘要和初步复核意见，但关键指标的来源、验收标准及责任人还不能完整追溯。',
+    nextSteps: ['补充关键指标的数据来源与验收标准', '明确试点范围、期限和停止条件', '由授权复核人确认材料完整性']
   },
-  quality: {
-    title: '原料供应商变更',
-    scenario: '质量变更',
-    objective: '确认供应商切换前需要完成哪些影响分析与验证。',
+  change: {
+    title: '关键流程变更评审',
+    scenario: '关键流程变更',
+    objective: '确认流程调整前需要完成哪些影响分析、验证和责任交接。',
     evidence: ['review'],
     resultTitle: '补充变更影响范围和验证计划',
-    reason: '虚构场景：变更申请已提交，但尚未说明受影响的产品批次、检验项目和放行责任人。',
-    nextSteps: ['列出受影响产品与库存批次', '补充新旧原料的对比验证方案', '指定质量负责人并记录批准依据']
+    reason: '虚构场景：变更申请已提交，但尚未说明受影响的团队、上下游流程、验证标准和批准责任人。',
+    nextSteps: ['列出受影响的团队、流程和相关方', '补充变更前后的验证方案与回退条件', '指定责任人并记录批准依据']
   },
   automation: {
-    title: '缺陷识别模型上线',
+    title: '自动化功能上线',
     scenario: 'AI / 自动化上线',
-    objective: '确认模型上线前的人工接管、回退和验证材料是否完整。',
+    objective: '确认自动化功能上线前的人工接管、回退和验证材料是否完整。',
     evidence: ['test', 'policy'],
     resultTitle: '补充人工接管和回退验证证据',
-    reason: '虚构场景：离线测试摘要和适用规则已列出，但异常时谁接管、如何停用或回退还没有演练记录。',
-    nextSteps: ['记录人工复核与接管触发条件', '演练停用和回退流程并留存结果', '由业务与质量负责人共同复核']
+    reason: '虚构场景：测试摘要和适用规则已列出，但异常时谁接管、如何停用或回退还没有演练记录。',
+    nextSteps: ['记录人工复核与接管触发条件', '演练停用和回退流程并留存结果', '由业务负责人和系统负责人共同复核']
   }
 };
 
-let activeCase = 'ceramics';
+let activeCase = 'pilot';
 
 function showView(name) {
   for (const view of views) {
