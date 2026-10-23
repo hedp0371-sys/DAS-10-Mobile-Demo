@@ -23,11 +23,29 @@ jobs:
           from pathlib import Path
 
           root = Path.cwd().resolve()
-          manifest_path = root / "SHA256SUMS.json"
-          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          manifest = json.loads((root / "SHA256SUMS.json").read_text(encoding="utf-8"))
 
           if not isinstance(manifest, dict) or not manifest:
               raise SystemExit("SHA256SUMS.json must be a non-empty object")
+
+          asset_extensions = {
+              ".html", ".css", ".js", ".webmanifest", ".json", ".svg",
+              ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico",
+              ".woff", ".woff2", ".ttf", ".otf",
+          }
+          discovered_assets = {
+              path.relative_to(root).as_posix()
+              for path in root.rglob("*")
+              if path.is_file()
+              and path.suffix.lower() in asset_extensions
+              and ".github" not in path.relative_to(root).parts
+              and ".git" not in path.relative_to(root).parts
+              and path.name != "SHA256SUMS.json"
+          }
+          listed_assets = set(manifest)
+          missing_entries = sorted(discovered_assets - listed_assets)
+          if missing_entries:
+              raise SystemExit("Assets missing from SHA256SUMS.json: " + ", ".join(missing_entries))
 
           errors = []
           for relative_path, expected in sorted(manifest.items()):
