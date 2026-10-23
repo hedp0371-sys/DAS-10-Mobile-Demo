@@ -1,0 +1,73 @@
+name: Verify static asset hashes
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Verify SHA256SUMS.json
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import sys
+          from pathlib import Path
+
+          root = Path.cwd().resolve()
+          manifest = json.loads((root / "SHA256SUMS.json").read_text(encoding="utf-8"))
+
+          if not isinstance(manifest, dict) or not manifest:
+              raise SystemExit("SHA256SUMS.json must be a non-empty object")
+
+          asset_extensions = {
+              ".html", ".css", ".js", ".webmanifest", ".json", ".svg",
+              ".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico",
+              ".woff", ".woff2", ".ttf", ".otf",
+          }
+          discovered_assets = {
+              path.relative_to(root).as_posix()
+              for path in root.rglob("*")
+              if path.is_file()
+              and path.suffix.lower() in asset_extensions
+              and ".github" not in path.relative_to(root).parts
+              and ".git" not in path.relative_to(root).parts
+              and path.name != "SHA256SUMS.json"
+          }
+          listed_assets = set(manifest)
+          missing_entries = sorted(discovered_assets - listed_assets)
+          if missing_entries:
+              raise SystemExit("Assets missing from SHA256SUMS.json: " + ", ".join(missing_entries))
+
+          errors = []
+          for relative_path, expected in sorted(manifest.items()):
+              if not isinstance(relative_path, str) or not isinstance(expected, str):
+                  errors.append(f"Invalid entry: {relative_path!r}")
+                  continue
+              target = (root / relative_path).resolve()
+              if root not in target.parents:
+                  errors.append(f"Path escapes repository: {relative_path}")
+                  continue
+              if not target.is_file():
+                  errors.append(f"Missing file: {relative_path}")
+                  continue
+              actual = hashlib.sha256(target.read_bytes()).hexdigest()
+              if actual.lower() != expected.lower():
+                  errors.append(f"SHA-256 mismatch: {relative_path}")
+              else:
+                  print(f"OK {relative_path}")
+
+          if errors:
+              print("\n".join(errors), file=sys.stderr)
+              raise SystemExit(1)
+
+          print(f"Verified {len(manifest)} files.")
+          PY
