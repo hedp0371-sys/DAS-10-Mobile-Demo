@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "DAS-10 移动预审台",
+  "short_name": "DAS-10",
+  "description": "决策预审移动端交互原型。仅显示静态样例，不连接评估服务。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1422",
+  "theme_color": "#0c1728",
+  "icons": [
+    { "src": "icons/das10.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
