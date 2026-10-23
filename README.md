@@ -2,13 +2,13 @@
 
 **移动端交互演示 / Mobile interaction demo**
 
-这是 DAS-10 的手机端体验原型，帮助收集流程与易用性反馈。当前版本使用虚构案例和预设脚本，不连接 DAS-10 引擎，不作真实评估，也不能用于业务决策。
+DAS-10 手机端体验原型，用于收集流程与易用性反馈。当前版本面向各行业的投资意向者与潜在客户开放体验，包含虚构案例和预设脚本；不连接 DAS-10 引擎、不作真实评估，也不能用于业务决策。欢迎有付费试点意向的团队体验后交流；当前演示免费，不提供真实评估或收费服务。
 
 ## 演示内容
 
-- 新材料中试申请（研发试验）
-- 原料供应商变更（质量变更）
-- 缺陷识别模型上线（自动化）
+- 新项目试点立项（项目评审）
+- 关键流程变更评审（流程治理）
+- 自动化功能上线（人工接管与回退）
 - 选中案例后载入虚构材料，展示对应的脚本回执和下一步清单
 
 脚本回执只由选中的案例决定，与表单内容无关。请勿输入真实客户资料、个人信息、商业秘密或其他敏感内容。
@@ -42,4 +42,4 @@ python -m http.server 8080
 
 ---
 
-This is a mobile interaction prototype for usability feedback. It uses fictional cases and predetermined demo receipts, has no connection to the DAS-10 engine, and must not be used for real decisions. The form values are not read, uploaded, or persisted by the demo script. Do not enter confidential, personal, or customer data.
+This is a mobile interaction prototype for usability feedback, open to prospective investors and potential customers across industries. It uses fictional cases and predetermined demo receipts, has no connection to the DAS-10 engine, and must not be used for real decisions. The current demo is free; no real evaluation or paid service is offered. The form values are not read, uploaded, or persisted by the demo script. Do not enter confidential, personal, or customer data.
