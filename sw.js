@@ -1,4 +1,4 @@
-const CACHE_NAME = 'das10-mobile-shell-v3';
+const CACHE_NAME = 'das10-mobile-shell-v4';
 const APP_SHELL = ['./', './index.html', './styles.css', './cases.css', './app.js', './manifest.webmanifest', './icons/das10.svg'];
 
 self.addEventListener('install', (event) => {
