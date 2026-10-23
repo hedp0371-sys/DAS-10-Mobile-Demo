@@ -23,7 +23,7 @@ python -m http.server 8080
 
 然后访问 `http://127.0.0.1:8080/`。
 
-也可以在 GitHub 仓库的 **Settings → Pages** 中，将 **Build and deployment** 设置为 **Deploy from a branch → main → /(root)**。部署后的静态演示网址可直接通过手机访问；iPhone 用户可在 Safari 分享菜单选择“添加到主屏幕”。GitHub Pages 仅托管静态页面，本仓库不包含或运行后端服务。
+在线体验：[DAS-10 手机演示](https://hedp0371-sys.github.io/DAS-10-Mobile-Demo/)，可直接通过手机访问；iPhone 用户可在 Safari 分享菜单选择“添加到主屏幕”。本演示为静态页面，不连接或运行后端服务。
 
 ## 数据与安全边界
 
