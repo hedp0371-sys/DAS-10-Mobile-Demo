@@ -80,9 +80,9 @@
               </button>
             </div>
           </section>
-          <form id="demo-form" autocomplete="off">\n            <p class="privacy-note">本页是本地脚本演示：输入不会发送至 DAS-10 服务端，也不会保存。请勿输入个人信息、敏感信息或商业机密。</p>
+          <form id="demo-form" autocomplete="off">\n            <p class="privacy-note">本页只展示虚构案例，文本框已锁定；演示表单内容不会发送至 DAS-10 服务端或保存。GitHub Pages 会为安全目的记录并保存访问者 IP。请勿提交真实个人信息、敏感信息或商业机密。</p>
             <label class="field-label" for="case-title">预审事项 <span>必填</span></label>
-            <input id="case-title" name="case-title" maxlength="80" placeholder="例如：新项目试点立项" required>
+            <input id="case-title" name="case-title" maxlength="80" placeholder="例如：新项目试点立项" required readonly>
 
             <label class="field-label" for="scenario">场景类型</label>
             <select id="scenario" name="scenario">
@@ -93,7 +93,7 @@
             </select>
 
             <label class="field-label" for="objective">决策目标 <span>演示输入</span></label>
-            <textarea id="objective" name="objective" rows="3" maxlength="500" placeholder="用一句话说明希望确认什么"></textarea>
+            <textarea id="objective" name="objective" rows="3" maxlength="500" placeholder="用一句话说明希望确认什么" readonly></textarea>
 
             <label class="field-label">已有材料</label>
             <div class="evidence-options">
@@ -129,7 +129,7 @@
           <div class="page-intro"><div><span class="eyebrow">ACCOUNT & SAFETY</span><h1 id="account-title">账户与边界</h1></div></div>
           <div class="profile-card"><div class="profile-mark">D</div><div><strong>访客演示</strong><small>未登录 · 无服务端连接</small></div><span class="status-dot"></span></div>
           <div class="settings-list">
-            <div><span class="setting-icon">⌘</span><span><strong>数据处理</strong><small>当前页面不提交、不保存表单数据</small></span></div>
+            <div><span class="setting-icon">⌘</span><span><strong>数据处理</strong><small>演示表单不提交、不保存；GitHub Pages 为安全记录并保存访客 IP</small></span></div>
             <div><span class="setting-icon">⊘</span><span><strong>执行权限</strong><small>所有演示状态均不可触发业务执行</small></span></div>
             <div><span class="setting-icon">⌖</span><span><strong>版本</strong><small>Mobile PWA Prototype · 0.1.0</small></span></div>
           </div>
