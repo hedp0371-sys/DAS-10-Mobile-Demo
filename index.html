@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0c1728">
+    <meta name="description" content="DAS-10 移动端预审流程演示。仅使用静态样例，不连接评估服务。">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/das10.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cases.css">
+    <title>DAS-10 移动预审</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="DAS-10 工作台">
+          <span class="brand-mark" aria-hidden="true">D10</span>
+          <span><strong>DAS-10</strong><small>决策预审台</small></span>
+        </a>
+        <span class="demo-pill"><i></i>演示模式</span>
+      </header>
+
+      <main id="main-content">
+        <section class="view active" id="home" aria-labelledby="home-title">
+          <div class="hero">
+            <div class="eyebrow">DECISION ASSURANCE · MOBILE</div>
+            <h1 id="home-title">先审清证据，<br><em>再决定下一步。</em></h1>
+            <p>把目标、约束和证据放在一起，交给规则检查与人工复核。DAS-10 不执行决策。</p>
+            <button class="primary-button" data-view="new">体验移动预审 <span aria-hidden="true">→</span></button>
+            <div class="hero-foot"><span class="pulse"></span>当前仅展示本地交互样例</div>
+          </div>
+
+          <div class="safety-strip">
+            <span class="shield" aria-hidden="true">✓</span>
+            <span><strong>执行权限始终关闭</strong><small>G1/G2 也只代表进入后续人工审批的候选资格</small></span>
+          </div>
+
+          <section class="section-block" aria-labelledby="flow-title">
+            <div class="section-heading"><div><span class="eyebrow">HOW IT WORKS</span><h2 id="flow-title">一条清晰的预审流程</h2></div><span class="step-count">01 — 04</span></div>
+            <div class="flow-list">
+              <article class="flow-item"><span class="flow-number">01</span><div><strong>描述决策</strong><p>说明目标、范围和关键约束</p></div><span class="flow-icon">↗</span></article>
+              <article class="flow-item"><span class="flow-number">02</span><div><strong>提交证据</strong><p>标记材料来源，等待规则核验</p></div><span class="flow-icon">⌁</span></article>
+              <article class="flow-item"><span class="flow-number">03</span><div><strong>补证与复核</strong><p>由授权人员独立检查并签核</p></div><span class="flow-icon">◎</span></article>
+              <article class="flow-item"><span class="flow-number">04</span><div><strong>留存回执</strong><p>查看闸门状态和审计记录</p></div><span class="flow-icon">⌑</span></article>
+            </div>
+          </section>
+
+          <section class="section-block sample-section" aria-labelledby="sample-title">
+            <div class="section-heading"><div><span class="eyebrow">SAMPLE RECEIPT</span><h2 id="sample-title">样例回执</h2></div><span class="sample-label">静态数据</span></div>
+            <article class="receipt-card">
+              <div class="receipt-top"><span class="gate-tag">G3 · 需补充证据</span><span class="receipt-id">DEMO-014</span></div>
+              <h3>新材料工艺试验预审</h3>
+              <p>示例原因：关键测量缺少可核验来源。请补充原始记录，再由授权审核人复核。</p>
+              <div class="receipt-bottom"><span>示例状态</span><span class="lock-label">不可执行 <b>×</b></span></div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="new" aria-labelledby="new-title" hidden>
+          <div class="page-intro">
+            <button class="back-button" data-view="home" aria-label="返回工作台">←</button>
+            <div><span class="eyebrow">NEW REVIEW</span><h1 id="new-title">新建预审</h1></div>
+          </div>
+          <div class="notice"><strong>演示保护</strong><span>请勿输入真实、个人或保密信息。本页不会把内容发送到服务器，也不会保存。</span></div>
+          <section class="case-picker" aria-labelledby="case-list-title">
+            <div class="section-heading"><div><span class="eyebrow">CHOOSE A SCENARIO</span><h2 id="case-list-title">先选一个虚构案例</h2></div><span class="sample-label">约 2 分钟</span></div>
+            <p class="case-hint">选中后会载入一组演示材料。你可以改动表单，但回执只播放预设脚本，不会读取你的输入。</p>
+            <div class="case-list" role="group" aria-label="虚构工作场景">
+              <button class="case-card selected" type="button" data-case="ceramics" aria-pressed="true">
+                <span class="case-icon">材</span><span class="case-card-copy"><strong>新材料中试申请</strong><small>研发试验 · 证据与复核</small></span><span class="case-arrow">→</span>
+              </button>
+              <button class="case-card" type="button" data-case="quality" aria-pressed="false">
+                <span class="case-icon gold">质</span><span class="case-card-copy"><strong>原料供应商变更</strong><small>质量变更 · 影响与验证</small></span><span class="case-arrow">→</span>
+              </button>
+              <button class="case-card" type="button" data-case="automation" aria-pressed="false">
+                <span class="case-icon blue">AI</span><span class="case-card-copy"><strong>缺陷识别模型上线</strong><small>自动化 · 人工接管与回退</small></span><span class="case-arrow">→</span>
+              </button>
+            </div>
+          </section>
+          <form id="demo-form" autocomplete="off">
+            <label class="field-label" for="case-title">预审事项 <span>必填</span></label>
+            <input id="case-title" name="case-title" maxlength="80" placeholder="例如：新材料配方试验立项" required>
+
+            <label class="field-label" for="scenario">场景类型</label>
+            <select id="scenario" name="scenario">
+              <option>研发试验</option>
+              <option>质量变更</option>
+              <option>AI / 自动化上线</option>
+              <option>其他内部评审</option>
+            </select>
+
+            <label class="field-label" for="objective">决策目标 <span>演示输入</span></label>
+            <textarea id="objective" name="objective" rows="3" maxlength="500" placeholder="用一句话说明希望确认什么"></textarea>
+
+            <label class="field-label">已有材料</label>
+            <div class="evidence-options">
+              <label class="check-row"><input type="checkbox" name="evidence" value="test"><span class="custom-check"></span><span><strong>试验记录</strong><small>样品、条件与原始测量</small></span></label>
+              <label class="check-row"><input type="checkbox" name="evidence" value="review"><span class="custom-check"></span><span><strong>人工复核</strong><small>由授权审核人确认</small></span></label>
+              <label class="check-row"><input type="checkbox" name="evidence" value="policy"><span class="custom-check"></span><span><strong>适用规则</strong><small>明确策略版本与约束来源</small></span></label>
+            </div>
+
+            <button class="primary-button full-width" type="submit">查看交互演示 <span aria-hidden="true">→</span></button>
+          </form>
+          <div class="demo-result" id="demo-result" role="status" aria-live="polite" hidden>
+            <div class="result-head"><span class="result-kicker">PRESET DEMO RECEIPT · 虚构案例</span><span class="result-gate" id="demo-gate">G3 · 需补充证据</span></div>
+            <h2 id="demo-result-title">补齐试验记录的来源与复核签字</h2>
+            <p id="demo-result-reason"></p>
+            <div class="result-boundary">脚本回执只由所选案例决定，与表单输入无关。它不是 DAS-10 引擎评估，也不能用于真实决策。</div>
+            <strong class="next-step-title">建议下一步</strong>
+            <ul id="demo-next-steps"></ul>
+            <button class="secondary-button" type="button" data-view="home">返回工作台</button>
+          </div>
+        </section>
+
+        <section class="view" id="records" aria-labelledby="records-title" hidden>
+          <div class="page-intro"><div><span class="eyebrow">REVIEW LOG</span><h1 id="records-title">预审记录</h1></div><span class="sample-label">样例</span></div>
+          <div class="notice"><strong>本地样例</strong><span>这里展示预先写入的演示数据，不含真实客户记录。</span></div>
+          <article class="record-row"><span class="record-avatar">材</span><span class="record-copy"><strong>新材料工艺试验预审</strong><small>今天 · 09:42 · 研发试验</small></span><span class="mini-gate">G3</span></article>
+          <article class="record-row"><span class="record-avatar alt">质</span><span class="record-copy"><strong>质量变更材料核对</strong><small>昨天 · 16:10 · 质量变更</small></span><span class="mini-gate muted">G4</span></article>
+          <article class="record-row"><span class="record-avatar alt2">AI</span><span class="record-copy"><strong>自动化流程上线检查</strong><small>10月 21日 · 11:06 · AI / 自动化</small></span><span class="mini-gate">G3</span></article>
+          <div class="empty-note">记录详情和审计链尚未连接后端。</div>
+        </section>
+
+        <section class="view" id="account" aria-labelledby="account-title" hidden>
+          <div class="page-intro"><div><span class="eyebrow">ACCOUNT & SAFETY</span><h1 id="account-title">账户与边界</h1></div></div>
+          <div class="profile-card"><div class="profile-mark">D</div><div><strong>访客演示</strong><small>未登录 · 无服务端连接</small></div><span class="status-dot"></span></div>
+          <div class="settings-list">
+            <div><span class="setting-icon">⌘</span><span><strong>数据处理</strong><small>当前页面不提交、不保存表单数据</small></span></div>
+            <div><span class="setting-icon">⊘</span><span><strong>执行权限</strong><small>所有演示状态均不可触发业务执行</small></span></div>
+            <div><span class="setting-icon">⌖</span><span><strong>版本</strong><small>Mobile PWA Prototype · 0.1.0</small></span></div>
+          </div>
+          <p class="fine-print">真实服务开放前，需要完成身份认证、TLS 网关、租户隔离、密钥治理、数据留存和外部安全测试。</p>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="主导航">
+        <button class="nav-item selected" data-view="home"><span class="nav-icon">⌂</span><span>工作台</span></button>
+        <button class="nav-item" data-view="new"><span class="nav-icon">＋</span><span>新预审</span></button>
+        <button class="nav-item" data-view="records"><span class="nav-icon">▤</span><span>记录</span></button>
+        <button class="nav-item" data-view="account"><span class="nav-icon">○</span><span>我的</span></button>
+      </nav>
+    </div>
+    <script src="app.js" defer></script>
+  </body>
+</html>
